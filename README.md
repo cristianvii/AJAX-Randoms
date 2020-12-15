@@ -1,2 +1,2 @@
 # AJAX-Randoms
-Pushing button returns a random gif image
+h1 with a button, returns a random gif image from giphy's API 
