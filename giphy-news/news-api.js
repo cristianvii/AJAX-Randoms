@@ -22,8 +22,7 @@ function makeHeadline(title, output) {
 }
 
 function showHeadlines() {    
-    var headlinesURL = 
-    "http://newsapi.org/v2/top-headlines"
+    var headlinesURL = "https://newsapi.org/v2/top-headlines"
     + "?"
     + "country=us"
     + "&"
@@ -58,6 +57,13 @@ function showHeadlines() {
     showEle('ajax-wait');
 }
 
+function addGIFImg(imageContainerId, imgSrc) {
+    var newImg = document.createElement('img');
+    newImg.src = imgSrc;
+    var containerEle = document.getElementById(imageContainerId);
+    containerEle.appendChild()
+}
+
 function showGIFs(searchTerm) {
     var gifsURL = "http://api.giphy.com/v1/gifs/search" +
     "?" +
@@ -72,7 +78,11 @@ function showGIFs(searchTerm) {
 
     req.onload = function () {
         hideEle('ajax-wait');
-        console.log(req.responseText);
+        var gifData = JSON.parse(req.responseText);
+        for (var gifIdx = 0; gifIdx < gifData.data.length; gifIdx++) {
+            console.log(gifData.data[gifIdx].images.orignial.url);
+            addGIFImg('gifs', gifData.data[gifIdx].images.original.url);
+        }
      };
 
      req.onerror = function () {
@@ -88,3 +98,12 @@ function showGIFs(searchTerm) {
 }
 
 window.addEventListener('load', showHeadlines);
+
+
+
+
+
+
+
+
+
