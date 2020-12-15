@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GIPHY AJAX Request</title>
+  <script>
+
+    function loadImg() {
+
+      var ajaxRequest = new XMLHttpRequest();
+
+      var giphyRandomURL =
+        "http://api.giphy.com/v1/gifs/random"
+        + "?"
+        + "rating=g"
+        + "&"
+        + "apiKey=dc6zaTOxFJmzC";
+
+      ajaxRequest.open("GET", giphyRandomURL, true);
+
+      ajaxRequest.onload = function() {
+        var imageElement = document.getElementById('gif');
+        var responseData = JSON.parse(ajaxRequest.responseText);
+        imageElement.src = responseData.data.image_original_url;
+      };
+
+      ajaxRequest.onerror = function() {
+        alert("There was an error while searching for images.");
+      };
+
+      ajaxRequest.send();
+    }
+</script>
+</head>
+
+<body>
+  <h1>GIPHY AJAX Request</h1>
+  <div>
+    <button onclick="loadImg()">Load Image</button>
+  </div>
+  <img id="gif" src="">
+</body>
+</html>
